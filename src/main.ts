@@ -2,6 +2,9 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import { CorsOptions } from "@nestjs/common/interfaces/external/cors-options.interface";
+import { env } from "./config";
+
+const PORT = env.SERVICE_CONFIG.port;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,6 +23,10 @@ async function bootstrap() {
     // 允许其他需要的 CORS 选项
   };
   app.enableCors(corsOptions);
-  await app.listen(3000);
+  await app.listen(PORT, () => {
+    console.log(
+      `${PORT === 3000 ? "(开发环境)" : "(生产环境)"}服务已经启动,接口请访问:http://localhost:${PORT}`,
+    );
+  });
 }
 bootstrap();

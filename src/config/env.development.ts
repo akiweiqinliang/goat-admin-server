@@ -16,4 +16,14 @@ export default {
     autoLoadEntities: true,
     synchronize: true,
   },
+  // DATABASE_CONFIG: {
+  //   type: "mysql",
+  //   host: "db4free.net",
+  //   port: 3306,
+  //   username: "akiweiqinliang",
+  //   password: "lwq123456",
+  //   database: "akilearndb",
+  //   autoLoadEntities: true,
+  //   synchronize: true,
+  // },
 };

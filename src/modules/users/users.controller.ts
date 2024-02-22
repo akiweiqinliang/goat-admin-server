@@ -20,10 +20,13 @@ import { ErrorCode } from "src/common/exception/error.code";
 @ApiTags("用户管理")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-  @Post()
+  @Post("create")
   @ApiOperation({ summary: "新增用户信息" })
   async create(@Body() createUserDto: CreateUserDto) {
-    const user = await this.usersService.findByName(createUserDto.userName, "");
+    const user = await this.usersService.findByIdAndName(
+      createUserDto.userName,
+      "",
+    );
     if (user) {
       return new Result().error(
         new ErrorCode().INTERNAL_SERVER_ERROR,
@@ -47,11 +50,17 @@ export class UsersController {
     const user = await this.usersService.findOne(id);
     return new Result<UpdateUserDto>().ok(user);
   }
+  @Post("findByName")
+  @ApiOperation({ summary: "根据用户名查询用户信息" })
+  async findByName(@Body("username") userName: string) {
+    const user = await this.usersService.findByName(userName);
+    return new Result<UpdateUserDto>().ok(user);
+  }
 
-  @Put(":id")
+  @Put("update/:id")
   @ApiOperation({ summary: "修改用户信息" })
   async update(@Body() updateUserDto: UpdateUserDto) {
-    const user = this.usersService.findByName(
+    const user = this.usersService.findByIdAndName(
       updateUserDto.userName,
       updateUserDto.id + "",
     );
