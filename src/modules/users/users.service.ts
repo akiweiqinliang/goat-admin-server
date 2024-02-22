@@ -50,15 +50,21 @@ export class UsersService {
   }
 
   // 根据id或id和userName查询信息
-  async findByName(userName: string, id: string): Promise<User> {
+  async findByIdAndName(userName: string, id: string): Promise<User> {
     const condition = { userName: userName };
     if (id) {
       condition["id"] = Not(id);
     }
-    console.log(await this.usersRepository.findOneBy(condition));
     return await this.usersRepository.findOneBy(condition);
   }
-
+  // 根据userName查询信息
+  async findByName(userName: string): Promise<User> {
+    return await this.usersRepository
+      .createQueryBuilder("user")
+      .select(["user.userName", "user.email", "user.email", "user.mobile"])
+      .where("user.userName = :userName", { userName })
+      .getOne();
+  }
   // 更新
   async update(updateUserDto: UpdateUserDto): Promise<void> {
     const user = sourceToTarget(updateUserDto, new UpdateUserDto());
