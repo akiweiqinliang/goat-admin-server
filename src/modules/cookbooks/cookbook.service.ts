@@ -36,4 +36,25 @@ export class CookbookService {
       ...pagination,
     };
   }
+  // 查询分页 中西餐列表
+  async getListByCatId(params): Promise<ListCookbookDto> {
+    const { page = 1, pageSize = 10 } = params;
+    const { categoryId } = params;
+    const getList = this.cookbookRepository
+      .createQueryBuilder("cookbook")
+      .where({ category: categoryId, delFlag: 0 })
+      .orderBy({
+        "cookbook.update_time": "DESC",
+      })
+      .skip((page - 1) * pageSize)
+      .take(pageSize)
+      .getManyAndCount();
+
+    const [list, total] = await getList;
+    const pagination = getPagination(total, pageSize, page);
+    return {
+      records: list,
+      ...pagination,
+    };
+  }
 }

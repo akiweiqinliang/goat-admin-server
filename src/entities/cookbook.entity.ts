@@ -7,14 +7,13 @@ export class Cookbook extends Base {
   title: string;
 
   @Column()
-  description: string;
-
+  tag: string;
+  @Column({ name: "tag_id" })
+  tagId: number; // 标签id
   @Column({ name: "img_url" })
   imgUrl: string;
-
   @Column()
   category: number; // 中餐0 西餐1
-
   @Column({ name: "cooking_way" })
   cookingWay: string;
 }
