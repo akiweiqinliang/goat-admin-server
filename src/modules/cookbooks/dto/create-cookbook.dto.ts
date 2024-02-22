@@ -5,7 +5,9 @@ export class CreateCookbookDto extends BaseDTO {
   @ApiProperty({ description: "食谱标题", example: "洋葱炒牛腩" })
   title: string;
   @ApiProperty({ description: "食谱简介", example: "懒人快手" })
-  description: string;
+  tag: string;
+  @ApiProperty({ description: "标签id", example: "1" })
+  tagId: number; // 标签id
   @ApiProperty({ description: "图片地址，可以为[]" })
   imgUrl: string;
   @ApiProperty({ description: "食谱类型" })

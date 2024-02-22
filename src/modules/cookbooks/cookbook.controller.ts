@@ -31,4 +31,10 @@ export class CookbookController {
     const cookbookList = await this.cookbookService.findAll(listCookbooKDto);
     return new Result<UpdateCookbookDto>().ok(cookbookList);
   }
+  @Get("byCatId")
+  @ApiOperation({ summary: "根据分类id获取中/西餐列表" })
+  async getListByCatId(@Query() listCookbooKDto: ListCookbookDto) {
+    const foodList = await this.cookbookService.getListByCatId(listCookbooKDto);
+    return new Result<UpdateCookbookDto>().ok(foodList);
+  }
 }
