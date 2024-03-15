@@ -7,11 +7,16 @@ export class CreateTagDto extends BaseDTO {
     example: 0,
   })
   tagType: number;
-  @ApiProperty({ description: "tag文本内容", example: "简单快手" })
+  @ApiProperty({
+    description: "tag类型的标签",
+    example: "cookbook",
+  })
+  tagTypeValue: string;
+  @ApiProperty({ description: "tag文本内容", example: "懒人快手" })
   value: string;
   @ApiProperty({
-    description: "tag标签id",
-    example: "1： 简单快手， 2：清淡饮食",
+    description: "tag标签id, 1： 懒人快手， 2：清淡饮食",
+    example: 1,
   })
   tagId: number;
 }
