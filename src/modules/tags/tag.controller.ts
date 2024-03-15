@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Result } from "../../common/dto/result.dto";
 import { CreateTagDto } from "./dto/create-tag.dto";
 import { TagService } from "./tag.service";
+import { Public } from "../../common/decorator/public.decorator";
 
+@Public()
 @Controller("tags")
 @ApiTags("标签管理")
 export class TagController {
@@ -16,5 +18,8 @@ export class TagController {
   }
   @Get()
   @ApiOperation({ summary: "获取标签列表" })
-  async findTagsByType() {}
+  async findTagsByType(@Query("tagType") tagType: number) {
+    const tagList = await this.tagService.findAllByType(tagType);
+    return new Result().ok({ records: tagList });
+  }
 }
