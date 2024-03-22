@@ -19,7 +19,12 @@ async function bootstrap() {
 
   // 配置 CORS
   const corsOptions: CorsOptions = {
-    origin: ["http://127.0.0.1:5173", "http://localhost:5173"],
+    origin: [
+      "http://127.0.0.1:5173",
+      "http://localhost:5173",
+      "https://goat-admin-seven.vercel.app",
+      "https://goat-admin.onrender.com",
+    ],
     // 允许其他需要的 CORS 选项
   };
   app.enableCors(corsOptions);

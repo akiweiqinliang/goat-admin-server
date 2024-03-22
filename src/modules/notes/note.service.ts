@@ -5,7 +5,6 @@ import { Not, Repository } from "typeorm";
 import { CreateNoteDto } from "./dto/create-note.dto";
 import { ListNoteDto } from "./dto/list-note.dto";
 import { getPagination } from "../../common/utils/page.util";
-import { sourceToTarget } from "../../common/utils/convert.util";
 import { UpdateNoteDto } from "./dto/update-note.dto";
 
 @Injectable()
