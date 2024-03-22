@@ -5,7 +5,6 @@ import { CreateTagDto } from "./dto/create-tag.dto";
 import { TagService } from "./tag.service";
 import { Public } from "../../common/decorator/public.decorator";
 
-@Public()
 @Controller("tags")
 @ApiTags("标签管理")
 export class TagController {

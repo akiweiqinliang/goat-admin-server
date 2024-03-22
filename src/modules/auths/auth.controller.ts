@@ -13,6 +13,7 @@ export class AuthController {
   @Post("login")
   @ApiOperation({ summary: "管理员登录" })
   async login(@Body() loginDto: LoginDto): Promise<Result<any>> {
+    console.log(loginDto);
     const result = await this.authService.findByNameAndPwd(
       loginDto.username,
       loginDto.password,

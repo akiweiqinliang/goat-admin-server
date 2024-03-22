@@ -16,8 +16,6 @@ import { CreateNoteDto } from "./dto/create-note.dto";
 import { ListNoteDto } from "./dto/list-note.dto";
 import { UpdateNoteDto } from "./dto/update-note.dto";
 import { ErrorCode } from "../../common/exception/error.code";
-import { UpdateUserDto } from "../users/dto/update-user.dto";
-@Public()
 @ApiTags("学习知识管理")
 @Controller("notes")
 export class NoteController {

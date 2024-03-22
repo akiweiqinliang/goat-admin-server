@@ -31,7 +31,10 @@
 ```bash
 $ npm install
 ```
-
+## Docker
+```bash
+$ docker pull akiweiqinliang/goat-nest-app:v1.0
+```
 ## Running the app
 
 ```bash

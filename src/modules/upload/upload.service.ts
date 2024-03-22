@@ -28,7 +28,7 @@ export class QiniuService {
       key,
       localFile,
       putExtra,
-      function (respErr, respBody, respInfo) {
+      function (respErr) {
         if (respErr) {
           throw respErr;
         } else {
