@@ -5,6 +5,8 @@ import { Repository } from "typeorm";
 import { Cookbook } from "../../entities/cookbook.entity";
 import { CreateCookbookDto } from "./dto/create-cookbook.dto";
 import { ListCookbookDto } from "./dto/list-cookbook.dto";
+import { UpdateNoteDto } from "../notes/dto/update-note.dto";
+import { UpdateCookbookDto } from "./dto/update-cookbook";
 @Injectable()
 export class CookbookService {
   constructor(
@@ -58,8 +60,12 @@ export class CookbookService {
     };
   }
   // 查询单个菜谱
-  async findById(id: number): Promise<CreateCookbookDto> {
+  async findById(id: number): Promise<Cookbook> {
     return await this.cookbookRepository.findOneBy({ id: id });
+  }
+  // 更新
+  async update(updateCookbookDto: UpdateCookbookDto): Promise<void> {
+    await this.cookbookRepository.update(updateCookbookDto.id, updateCookbookDto);
   }
   // tagId查列表
   async getListByTagId(

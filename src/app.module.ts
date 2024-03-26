@@ -12,6 +12,7 @@ import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./common/guards/auth.guard";
 import { TagModule } from "./modules/tags/tag.module";
 import { NoteModule } from "./modules/notes/note.module";
+import { TodoModule } from "./modules/todos/todo.module";
 @Module({
   imports: [
     TypeOrmModule.forRoot(env.DATABASE_CONFIG),
@@ -20,6 +21,7 @@ import { NoteModule } from "./modules/notes/note.module";
     CookbookModule,
     TagModule,
     NoteModule,
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [
