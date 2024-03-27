@@ -6,7 +6,7 @@ import {
   Query,
   UseInterceptors,
   UploadedFile,
-  UseGuards,
+  UseGuards, Delete, Param
 } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Result } from "src/common/dto/result.dto";
@@ -19,6 +19,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { extname } from "path";
 import * as fs from "fs";
+import { ErrorCode } from "../../common/exception/error.code";
 @Controller("cookbooks")
 @ApiTags("菜谱管理")
 export class CookbookController {
@@ -41,6 +42,20 @@ export class CookbookController {
   async create(@Body() createCookbookDto: CreateCookbookDto) {
     // console.log(createCookbookDto);
     await this.cookbookService.create(createCookbookDto);
+    return new Result().ok();
+  }
+  @Delete(":id")
+  @ApiOperation({ summary: "删除note信息" })
+  async remove(@Param("id") id: number) {
+    const cookbook = await this.cookbookService.findById(id);
+    if (!cookbook) {
+      return new Result().error(
+        new ErrorCode().INTERNAL_SERVER_ERROR,
+        "记录不存在",
+      );
+    }
+    cookbook.delFlag = 1;
+    await this.cookbookService.update(cookbook);
     return new Result().ok();
   }
   @Get("findById")
