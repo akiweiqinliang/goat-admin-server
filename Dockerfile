@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # 暴露 Nest.js 应用程序的端口
-EXPOSE 3000
+EXPOSE 5000
 
 # 启动 Nest.js 应用程序
 CMD ["npm", "run", "start:dbprod"]

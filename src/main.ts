@@ -22,6 +22,8 @@ async function bootstrap() {
     origin: [
       "http://127.0.0.1:5173",
       "http://localhost:5173",
+      "https://akiweiqinliang.fun",
+      "http://122.51.133.43",
       "https://goat-admin-seven.vercel.app",
       "https://goat-admin.onrender.com",
     ],
